@@ -103,12 +103,15 @@ Route::get('/', function () {
 
 //Deleting Data Queries
 
-Route::get('/delete', function (){
-
-    $deleted = DB::delete('delete from posts where id = ?', [2]);
-
-    if($deleted = 0){ return "record updated";}else{ return"record was not updated";}
-
-});
+//Route::get('/delete', function (){
+//
+//    $deleted = DB::delete('delete from posts where id = ?', [2]);
+//
+//    if($deleted = 0){ return "record updated";}else{ return"record was not updated";}
+//
+//});
 
 //End of Deleting Data Queries
+
+
+
