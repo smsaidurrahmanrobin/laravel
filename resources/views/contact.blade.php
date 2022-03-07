@@ -1,22 +1,27 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-    <title>Laravel</title>
+@section('content')
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <h1>Contactsssss Page</h1>
 
-    <!-- Styles -->
+    @if (count($people))
 
-</head>
-<body>
-<div class="container">
+        <ul>
 
-    <h1>Contact Page</h1>
 
-</div>
-</body>
-</html>
+        @foreach($people as $person)
+
+            <li>{{$person}}</li>
+
+        @endforeach
+
+        </ul>
+    @endif
+
+@stop
+
+@section('footer')
+
+{{--    <script>alert("Hello to Contact Page in the views folder")</script>--}}
+
+@stop
