@@ -19,9 +19,11 @@ Route::get('/', function () {
 
 });
 
-Route::resource('/post',PostController::class );
+//Route::resource('/post',PostController::class );
+//
+//Route::get('/contact',PostController::class . '@contact');
 
-Route::get('/contact',PostController::class . '@contact');
+Route::get('post/{id}/{name}/{password}',PostController::class . '@show_post');
 
 //Route::get('/about', function () {
 //    return 'Hi about page';
