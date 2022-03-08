@@ -41,4 +41,32 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public  function post(){
+
+        return $this->hasOne('App\Models\Post');
+
+
+    }
+
+    public  function posts(){
+
+        return $this->hasMany('App\Models\Post');
+
+
+    }
+
+    public  function roles(){
+
+        //for customized table names and columns//
+        //return $this->belongsToMany('App\Models\Role','users_role', 'user_id', 'role_id');
+
+        return $this->belongsToMany('App\Models\Role')->withPivot('created_at');
+
+
+    }
+
+
+
+
 }

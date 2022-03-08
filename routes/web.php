@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Models\Post;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -305,6 +306,77 @@ Route::get('/forcedeleteindividual', function (){
 
 });
 
+
+////--------------------------------------------
+//END
+////--------------------------------------------
+
+
+////--------------------------------------------
+//Eloquent Relationships
+////--------------------------------------------
+
+////--------------ONE TO ONE RELATIONSHIP------------------------------
+
+Route::get('/user/{id}/post', function ($id){
+
+    return User::find($id)->post->title;
+
+});
+
+////--------------INVERSE OF ONE TO ONE RELATIONSHIP------------------------------
+
+Route::get('/post/{id}/user', function ($id){
+
+    return Post::find($id)->user->name;
+
+});
+
+
+////--------------ONE TO MANY RELATIONSHIP------------------------------
+
+Route::get('/postss/{id}', function ($id){
+
+    $user = User::find($id);
+
+    foreach ($user->posts as $post){
+
+        echo  $post->title. "<br>";
+
+    }
+
+});
+
+////--------------MNAY TO MANY RELATIONSHIP------------------------------
+
+Route::get('/user/{id}/role', function ($id){
+
+     $user = User::find($id);
+
+
+    foreach ($user->roles as $role){
+
+        echo  $role->name. "<br>";
+
+    }
+
+});
+
+
+////--------------ACCESSING THE INTERMEDIATE TABLE/PIVOT TABLE------------------------------
+
+Route::get('/user/pivot/{id}', function ($id){
+
+    $user = User::find($id);
+
+
+    foreach ($user->roles as $role){
+
+        echo  $role->pivot->created_at. "<br>";
+
+    }
+
+});
 
 ////--------------------------------------------
 //END
