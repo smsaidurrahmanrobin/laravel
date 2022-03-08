@@ -189,3 +189,124 @@ Route::get('/basicUPDATE', function (){
 ////--------------------------------------------
 //END
 ////--------------------------------------------
+
+
+////--------------------------------------------
+//Creating/Hadnling Mass Data and configuring Mass Data
+////--
+
+Route::get('/create', function (){
+
+  Post::create(['title'=>'The create method', 'body'=>'Wow i\'m learnig a lot']);
+
+  return "SAVED";
+
+
+});
+
+
+//----------UPDATING---------
+Route::get('/update', function (){
+
+    Post::where('id', 8)->update(['title'=>'(UPDATED)The create method', 'body'=>'(UPDATED)Wow i\'m learnig a lot']);
+
+    return "UPDATED";
+
+
+});
+
+//---------DELETING----------
+
+//Route::get('/delete', function (){
+//
+//    $post = Post::find(2);
+//
+//    $post->delete();
+//
+//    return "UPDATED";
+//
+//
+//});
+
+//---------DELETING/DESTROYING MULTIPLE ID'S IN A SINGLE COMMAND----------
+
+Route::get('/delete', function (){
+
+   Post::destroy(12,13);
+
+
+
+    return "DESTROYED";
+
+
+});
+
+
+//---------SOFT DELETING/PUTTING TO TRASH ----------
+
+Route::get('/softdelete', function (){
+
+    Post::find(11)->delete();
+
+
+});
+
+////---------READ SOFT DELETED ITEMS ----------
+//
+//Route::get('/readsoftdelete', function (){
+//
+////    $post = Post::find(11);
+////    return $post;
+//
+////    $post = Post::withTrashed()->find(11);
+////    return $post;
+//
+//    //------Reading all the ONLY TRASHED items at once
+//
+//    $post = Post::onlyTrashed()->get();
+//    return $post;
+//
+//
+//});
+
+
+////---------RESTORING SOFT DELETED ITEMS ----------
+//
+//Route::get('/restore', function (){
+//
+//
+//
+//    $post = Post::onlyTrashed()->restore();
+//    return 'Restored';
+//
+//
+//});
+
+
+//---------PERMANENTLY DELETING SOFT DELETED ITEMS ----------
+
+Route::get('/forcedeletealltrashed', function (){
+
+
+
+    $post = Post::onlyTrashed()->forceDelete();
+    return 'Permanently Deleted';
+
+
+});
+
+Route::get('/forcedeleteindividual', function (){
+
+
+
+    $post = Post::onlyTrashed()->find(12)->forceDelete();
+    return 'Permanently Deleted';
+
+
+});
+
+
+////--------------------------------------------
+//END
+////--------------------------------------------
+
