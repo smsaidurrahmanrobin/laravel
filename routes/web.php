@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Country;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Models\Post;
@@ -347,7 +348,7 @@ Route::get('/postss/{id}', function ($id){
 
 });
 
-////--------------MNAY TO MANY RELATIONSHIP------------------------------
+////--------------MNAY TO MANY RELATIONS------------------------------
 
 Route::get('/user/{id}/role', function ($id){
 
@@ -373,6 +374,21 @@ Route::get('/user/pivot/{id}', function ($id){
     foreach ($user->roles as $role){
 
         echo  $role->pivot->created_at. "<br>";
+
+    }
+
+});
+
+////--------------HAS MANY THROUGH RELATION------------------------------
+
+Route::get('/user/country', function (){
+
+    $country = Country::find(4);
+
+
+    foreach ($country->posts as $post){
+
+        return $post->title. "<br>";
 
     }
 
