@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Country;
+use App\Models\Photo;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Models\Post;
@@ -366,33 +368,102 @@ Route::get('/user/{id}/role', function ($id){
 
 ////--------------ACCESSING THE INTERMEDIATE TABLE/PIVOT TABLE------------------------------
 
-Route::get('/user/pivot/{id}', function ($id){
-
-    $user = User::find($id);
-
-
-    foreach ($user->roles as $role){
-
-        echo  $role->pivot->created_at. "<br>";
-
-    }
-
-});
+//Route::get('/user/pivot/{id}', function ($id){
+//
+//    $user = User::find($id);
+//
+//
+//    foreach ($user->roles as $role){
+//
+//        echo  $role->pivot->created_at. "<br>";
+//
+//    }
+//
+//});
 
 ////--------------HAS MANY THROUGH RELATION------------------------------
 
-Route::get('/user/country', function (){
+//Route::get('/user/country', function (){
+//
+//    $country = Country::find(4);
+//
+//
+//    foreach ($country->posts as $post){
+//
+//        return $post->title. "<br>";
+//
+//    }
+//
+//});
 
-    $country = Country::find(4);
+////--------------POLYMORPHIC RELATION------------------------------
+
+Route::get('/user/photo', function (){
+
+    $user = User::find(1);
 
 
-    foreach ($country->posts as $post){
+    foreach ($user->photos as $photo){
 
-        return $post->title. "<br>";
+        return $photo->imageable_type;
 
     }
 
 });
+
+Route::get('/post/photo', function (){
+
+    $post = Post::find(1);
+
+
+    foreach ($post->photos as $photo){
+
+        echo $photo->path. "<br>";
+
+    }
+
+});
+
+
+////--------------POLYMORPHIC RELATION THE INVERSE------------------------------
+
+//Route::get('/post/photo/{id}', function ($id){
+//
+//    $photo = Photo::findorfail($id);
+//
+//
+//    return $photo->imageable;
+//
+//
+//});
+
+////--------------POLYMORPHIC RELATION MANY TO MANY------------------------------
+
+Route::get('/post/tag', function (){
+
+    $post = Post::find(2);
+
+    foreach ($post->tags as $tag){
+
+        echo $tag->name;
+    }
+
+
+});
+
+Route::get('/tag/post', function (){
+
+    $tag = Tag::find(2);
+
+
+
+    foreach ($tag->posts as $post) {
+
+        return $post->title;
+    }
+
+    });
+
 
 ////--------------------------------------------
 //END
