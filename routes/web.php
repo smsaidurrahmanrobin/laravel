@@ -1,10 +1,13 @@
 <?php
 
+;
+
+use App\Http\PostControllers\PostController;
 use App\Models\Country;
 use App\Models\Photo;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
+use App\Http\PostControllers;
 use App\Models\Post;
 use App\Models\User;
 
@@ -20,7 +23,7 @@ use App\Models\User;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return '<h1><center>Laravel-Demo Project</center>';
 
 });
 
@@ -474,7 +477,7 @@ Route::get('/tag/post', function (){
 //CRUD Application
 ////--------------------------------------------
 
-Route::resource('/posts','PostController ');
+Route::resource('/posts',PostController::class,['create']);
 
 
 

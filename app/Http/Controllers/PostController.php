@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\PostControllers;
+use App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class PostController extends Controller
 {
@@ -24,6 +27,8 @@ class PostController extends Controller
     public function create()
     {
         //
+        return view('posts.create');
+
     }
 
     /**
@@ -95,5 +100,9 @@ class PostController extends Controller
 
         return view('post', compact('id', 'name')) ;
 
+    }
+
+    private function views(string $string)
+    {
     }
 }
