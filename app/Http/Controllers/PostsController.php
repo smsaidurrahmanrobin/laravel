@@ -1,13 +1,10 @@
 <?php
 
-namespace App\Http\PostControllers;
-use App\Http\Controllers;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
-class PostController extends Controller
+class PostsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +13,8 @@ class PostController extends Controller
      */
     public function index()
     {
-       return  "This is PostController.php in the index method and the id is";
+        //
+        return "This is PostController.php in the index method and the id is";
     }
 
     /**
@@ -50,7 +48,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-       return "This is in show method & id is: ". $id;
+        //
     }
 
     /**
@@ -61,7 +59,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        return "This is edit method";
+        //
     }
 
     /**
@@ -89,10 +87,10 @@ class PostController extends Controller
 
     public function contact(){
 
-      // $people = ['Edwin', 'Jose','Peter', "Maria"];
-      $people = ['edim'];
+        // $people = ['Edwin', 'Jose','Peter', "Maria"];
+        $people = ['edim'];
 
-      return view('contact', compact('people'));
+        return view('contact', compact('people'));
 
     }
 
@@ -100,9 +98,5 @@ class PostController extends Controller
 
         return view('post', compact('id', 'name')) ;
 
-    }
-
-    private function views(string $string)
-    {
     }
 }

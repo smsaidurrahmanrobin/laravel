@@ -2,14 +2,18 @@
 
 ;
 
-use App\Http\PostControllers\PostController;
+use App\Http\Controllers;
+
+
+use App\Http\Controllers\PostsController;
 use App\Models\Country;
 use App\Models\Photo;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Route;
-use App\Http\PostControllers;
+
 use App\Models\Post;
 use App\Models\User;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,11 +31,11 @@ Route::get('/', function () {
 
 });
 
-//Route::resource('/post',PostController::class );
-//
-//Route::get('/contact',PostController::class . '@contact');
-//
-//Route::get('posts/{id}/{name}',PostController::class . '@show_post');
+Route::resource('/index',PostsController::class, ['index']);
+
+Route::get('/contact',PostsController::class . '@contact');
+
+//Route::get('/posts/{id}/{name}',PostsController::class . '@show_post');
 
 
 //Route::get('/about', function () {
@@ -44,12 +48,12 @@ Route::get('/', function () {
 //
 //});
 //
-//Route::get('/post/{id}/{name}', function ($id, $name){
-//
-//    return "This is post no:" .$id."  ". $name;
-//
-//
-//});
+Route::get('/post/{id}/{name}', function ($id, $name){
+
+    return "This is post no:" .$id."  ". $name;
+
+
+});
 //
 //Route::get('admin/posts/',array('as'=>'admin.home' ,function (){
 //
@@ -477,7 +481,7 @@ Route::get('/tag/post', function (){
 //CRUD Application
 ////--------------------------------------------
 
-Route::resource('/posts',PostController::class,['create']);
+Route::resource('/posts', PostsController::class);
 
 
 
