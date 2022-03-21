@@ -15,7 +15,11 @@ class PostsController extends Controller
     public function index()
     {
         //
-        return "This is PostController.php in the index method and the id is";
+        //return "This is PostController.php in the index method and the id is";
+
+        $posts = Post::all();
+
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -59,6 +63,8 @@ class PostsController extends Controller
         $post = new Post;
         $post->title = $request->title;
         $post->save();
+
+        return redirect('/posts');
     }
 
     /**
@@ -70,6 +76,11 @@ class PostsController extends Controller
     public function show($id)
     {
         //
+        $post = Post::findorfail($id);
+
+        return view('posts.show', compact('post'));
+
+
     }
 
     /**
@@ -81,6 +92,11 @@ class PostsController extends Controller
     public function edit($id)
     {
         //
+
+        $post = Post::findorfail($id);
+
+        return view('posts.edit', compact('post'));
+
     }
 
     /**
@@ -93,6 +109,12 @@ class PostsController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $post = Post::findorfail($id);
+
+        $post->update($request->all());
+
+        return redirect('/posts');
     }
 
     /**
@@ -104,6 +126,12 @@ class PostsController extends Controller
     public function destroy($id)
     {
         //
+        $post = Post::findorfail($id);
+
+        $post->delete();
+
+        return redirect('/posts');
+
     }
 
     public function contact(){
