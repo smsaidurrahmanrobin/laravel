@@ -7,7 +7,7 @@
         <input type="text" name="title" placeholder="Enter Title">
 
         <input type="submit" name="submit">
-
+        {{csrf_field()}}
 
     </form>
 
