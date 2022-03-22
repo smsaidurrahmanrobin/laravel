@@ -31,6 +31,13 @@ Route::get('/', function () {
 
 });
 
+Route::group(['middleware'=>'web'], function(){
+
+  Route::resource('/posts', PostsController::class);
+
+
+});
+
 //Route::resource('/index',PostsController::class, ['index']);
 //
 //Route::get('/contact',PostsController::class . '@contact');
