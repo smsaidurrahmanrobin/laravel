@@ -5,7 +5,9 @@
     <h1>Create Post</h1>
 {{--    <form method="post" action="/posts">--}}
 
-    {!! Form::open(['method' =>'POST', 'action'=>'\App\Http\Controllers\PostsController@store']) !!}
+    {!! Form::open(['method' =>'POST', 'action'=>'\App\Http\Controllers\PostsController@store', 'files'=>true]) !!}
+
+
 
         <div class="from_group">
 
@@ -15,6 +17,12 @@
                     {!! Form::submit('Create', ['class'=>'btn btn-danger']) !!}
 
          </div>
+
+        <div class="from_group">
+
+            {!! Form::file('file1', ['class'=>'from-control']) !!}
+
+        </div>
 
 
 

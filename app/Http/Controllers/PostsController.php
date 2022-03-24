@@ -74,11 +74,50 @@ class PostsController extends Controller
 
         ////3rd way
         ///
-        $post = new Post;
-        $post->title = $request->title;
-        $post->save();
+//        $post = new Post;
+//        $post->title = $request->title;
+//        $post->save();
+//
+//        return redirect('/posts');
 
+
+
+        //=================getting File info from the Create page============
+
+//        $file = $request->file('file1');
+//
+//        echo "<br>";
+//
+//        echo $file->getClientOriginalName();
+//
+//        echo "<br>";
+//
+//        echo $file->getSize();
+//
+//        echo "<br>";
+
+
+
+//=================persisting File data into Database============
+
+        $input = $request->all();
+
+        if($file = $request->file('file1')){
+
+
+            $name = $file->getClientOriginalName();
+
+            $file->move('images', $name);
+
+            $input['path'] = $name;
+
+
+
+        }
+
+        Post::create($input);
         return redirect('/posts');
+
     }
 
     /**
