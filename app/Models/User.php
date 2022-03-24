@@ -73,6 +73,32 @@ class User extends Authenticatable
     }
 
 
+    ///============ACCESSORS========access/gets the data==============
+
+     public function getNameAttribute($value){
+
+             return ucfirst($value);
+
+         }
+
+
+     public function getEmailAttribute($value){
+
+               return ucfirst($value);
+
+       }
+
+
+    ///============MUTARORS========mutates the data==============
+
+    public function setNameAttribute($value){
+
+            return $this->attributes['name'] = ucfirst($value);
+
+        }
+
+
+
 
 
 }

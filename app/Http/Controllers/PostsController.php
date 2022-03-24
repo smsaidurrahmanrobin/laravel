@@ -18,7 +18,13 @@ class PostsController extends Controller
         //
         //return "This is PostController.php in the index method and the id is";
 
-        $posts = Post::all();
+        //$posts = Post::all();
+
+//        $posts = Post::latest();
+
+        $posts = Post::latest()->get();
+
+        //$posts = Post::orderby('id')->get();
 
         return view('posts.index', compact('posts'));
     }

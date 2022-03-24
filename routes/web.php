@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Models\Post;
 use App\Models\User;
+use Carbon\Carbon;
 
 
 /*
@@ -490,5 +491,41 @@ Route::group(['middleware'=>'web'], function(){
 
 Route::resource('/posts', PostsController::class);
 
+Route::get('/dates', function (){
 
+    $date = new DateTime('+2 days');
+
+    echo $date->format('d-m-y');
+
+    echo "<br>";
+
+    echo Carbon::now()->addDays('4')->diffForHumans();
+
+    echo "<br>";
+
+    echo Carbon::now()->subMonths(3)->diffForHumans();
+    echo "<br>";
+
+    echo Carbon::now()->Yesterday();
+
+});
+
+Route::get('/getname', function (){
+
+    $user = User::find(1);
+
+    echo $user->email;
+
+});
+
+
+Route::get('/setname', function (){
+
+    $user = User::find(1);
+
+    $user->name = 'William';
+
+    $user->save();
+
+});
 

@@ -43,6 +43,12 @@ protected $fillable = [
 
     }
 
+    public static function scopeLatest($query){
+
+             return $query->latest()->get();
+
+    }
+
 
 }
 
